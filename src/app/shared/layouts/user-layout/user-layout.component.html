@@ -1,0 +1,27 @@
+<div class="main-content-wrap">
+  <app-header></app-header>
+  <div class="content-wrap">
+    <div class="sidebar-wrap">
+      <div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user/scheduler">Scheduler</a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="settings-wrap">
+        <a routerLink="#"><fa-icon [icon]="faCogs" class="fa-2x"></fa-icon></a>
+      </div>
+    </div>
+    <div class="sub-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
