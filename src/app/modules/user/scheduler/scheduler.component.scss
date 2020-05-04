@@ -1,0 +1,24 @@
+.content-wrap {
+    display: flex;
+    justify-content: space-evenly;
+    .create-event-wrap {
+        width: 74%;
+        .collapseForm {
+            color: black;
+
+            .card-body {
+                display: flex;
+                align-items: center;
+
+                .create-event-text {
+                    margin-left: 20px;
+                    height: calc(1.5em + 0.5rem + 9px) !important;
+                }
+
+                .create-event-button {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}

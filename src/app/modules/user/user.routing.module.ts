@@ -2,8 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from '@angular/core';
 import { UserLayoutComponent } from '@app/shared/layouts/user-layout/user-layout.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
-
-
+import { MedicineComponent } from './medicine/medicine.component';
 
 const routes: Routes = [
     {
@@ -13,7 +12,12 @@ const routes: Routes = [
             {
                 path: 'scheduler',
                 component: SchedulerComponent
+            },
+            {
+                path: 'medicine',
+                component: MedicineComponent
             }
+
         ]
     }
 ]
