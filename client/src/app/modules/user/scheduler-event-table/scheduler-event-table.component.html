@@ -2,20 +2,25 @@
     <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col" sortable="name" (sort)="onSort($event)">Date</th>
-      <th scope="col" sortable="area" (sort)="onSort($event)">Description</th>
-      <th scope="col" sortable="population" (sort)="onSort($event)">Active</th>
+      <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+      <th scope="col" sortable="description" (sort)="onSort($event)">Description</th>
+      <th scope="col" >Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let country of countries">
-      <th scope="row">{{ country.id }}</th>
+    <tr *ngFor="let event of events; index as i">
+      <th scope="row">{{ i }}</th>
       <td>
-        <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
-        {{ country.name }}
+        {{ event.date | date:'MMMM d, y, h:mm:ss a' }}
       </td>
-      <td>{{ country.area | number }}</td>
-      <td>{{ country.population | number }}</td>
+      <td>
+        {{ event.text }}
+      </td>
+      <td>
+        <button>Unactive</button>
+        <button>Delete</button>
+
+      </td>
     </tr>
     </tbody>
   </table>

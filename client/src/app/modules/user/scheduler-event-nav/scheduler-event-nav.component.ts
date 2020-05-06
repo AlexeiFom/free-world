@@ -15,22 +15,16 @@ export class SchedulerEventNavComponent implements OnInit {
   active: 1;
   events: SchedulerEvent[];
 
-  constructor(private eventService: EventService) { }
+  // constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe(result => {
-      this.events = result
-    },
-      (error) => {
-        debugger
-      }
-    );
-    // debugger;
-    // this.eventService.getEvents().subscribe(response => {
-    //   debugger
-
-
-    // })
+    // this.eventService.getEvents().subscribe(result => {
+    //   this.events = result
+    // },
+    //   (error) => {
+    //     debugger
+    //   }
+    // );
   }
 
 }

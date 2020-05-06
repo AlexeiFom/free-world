@@ -1,8 +1,11 @@
 const Event = require('../models/event/Event')
 
 module.exports.addEvent = async function (req, resp) {
+
+    console.log(req.body)
+
     const newEvent = new Event({
-        date: new Date(),
+        date: req.body.date,
         text: req.body.text
     })
 

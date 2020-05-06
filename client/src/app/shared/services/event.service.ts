@@ -23,25 +23,17 @@ export class EventService {
     return this.http.get<SchedulerEvent[]>(`${environment.apiUrl}/event/events`)
   }
 
-
-  // getEvents(): Observable<SchedulerEvent> {
-  //   debugger
-  //   return new Observable(subscriber => {
-  //     this.http.get(`${environment.apiUrl}/event/events`)
-  //       .subscribe(result => {
-
-  //         const eeee = result.map(() =>)
-
-
-  //         subscriber.next(result)
-  //       })
-  //   });
-  // }
-
-
   addEvent(event) {
     debugger
 
+    this.http.post(`${environment.apiUrl}/event/addEvent`, event)
+      .subscribe((next) => {
+        debugger;
+      },
+        (error) => {
+          debugger;
+        }
+      )
     //environment
 
 

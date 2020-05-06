@@ -19,14 +19,15 @@ export class SchedulerComponent {
   }
 
   addNewEvent() {
-    debugger
-    const selectedDateTime = new Date(this.markedDate.year, this.markedDate.month-1, this.markedDate.day, Number(this.newEvent.date['hour']), Number(this.newEvent.date['minute']))
+    const selectedDateTime = new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day, Number(this.newEvent.date['hour']), Number(this.newEvent.date['minute']))
 
     if (selectedDateTime <= new Date()) {
       this.isSelectedTimeError = true;
       return;
     }
+    this.newEvent.date = selectedDateTime;
     this.isSelectedTimeError = false;
+    
     this.eventService.addEvent(this.newEvent);
   }
 

@@ -8,15 +8,7 @@
   </li>
   <li [ngbNavItem]="2">
     <a ngbNavLink>All</a>
-    <ng-template ngbNavContent>
-      <!-- <div>
-        <ul>
-          <li *ngFor="let event of events; index as i">
-            <span class="event-count">{{i+1}}</span><span>{{event.date | date:'MMMM d, y, h:mm:ss a'}}</span><span>{{event.text}}</span>
-          </li>
-        </ul>
-      </div> -->
-    
+    <ng-template ngbNavContent>    
       <app-scheduler-event-table></app-scheduler-event-table>
     </ng-template>
   </li>
