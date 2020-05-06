@@ -1,12 +1,10 @@
-const mongoose = require('mongoose')
 const News = require('../models/news/News')
 
 module.exports.news = async function (req, resp) {
-    console.log('In Controller')
-
-    const request = req.body
+    console.log('In News Controller')
 
     const newsList = await News.find()
+    console.log(newsList)   
 
-    console.log(request)
+    resp.send(newsList)
 }

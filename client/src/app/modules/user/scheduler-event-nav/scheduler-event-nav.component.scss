@@ -1,0 +1,21 @@
+// ::ng-deep .exists-events-content {
+//     .event-count {
+//         border: 2px solid;
+//         border-radius: 5px;
+//         padding: 0 5px;
+//     }
+// }
+
+.exists-events-content {
+    padding: 20px;
+    color: black;
+    border-left: 1px solid #dee2e6;
+
+    &.mt-2 {
+        margin-top: 0 !important;
+    }
+
+    ul{
+        list-style: none;
+    }
+}

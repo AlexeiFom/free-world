@@ -1,25 +1,34 @@
 <div class="content-wrap">
-    <ngb-datepicker [startDate]="currentDate" [(ngModel)]="currentDate" #d></ngb-datepicker>
+    <div class="left-part">
+        <ngb-datepicker [startDate]="markedDate" [(ngModel)]="markedDate" #d></ngb-datepicker>
+        <div class="create-event-wrap">
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="collapsed()"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                    Add event
+                </button>
+            </p>
+            <div class="collapseForm" [ngbCollapse]="isCollapsed">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="selected-time-error-wrap">
+                            <span *ngIf="isSelectedTimeError" class="selected-time-error">Expired time !</span>
+                            <ngb-timepicker [(ngModel)]="newEvent.date"></ngb-timepicker>
+                        </div>
 
-    <div class="create-event-wrap">
-        <p>
-            <button type="button" class="btn btn-outline-primary" (click)="collapsed()"
-                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-                Add event
-            </button>
-        </p>
-        <div class="collapseForm" [ngbCollapse]="isCollapsed">
-            <div class="card">
-                <div class="card-body">
-                    <ngb-timepicker [(ngModel)]="newEvent.time"></ngb-timepicker>
-                    <input [(ngModel)]="newEvent.text" class="create-event-text form-control form-control-sm" type="text" placeholder="Text...">
-                    <button (click)="addNewEvent()" type="button" class="create-event-button btn btn-primary">Add</button>
+                        <input [(ngModel)]="newEvent.text" class="create-event-text form-control form-control-sm"
+                            type="text" placeholder="Text...">
+                        <button (click)="addNewEvent()" type="button"
+                            class="create-event-button btn btn-primary">Add</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div>
-    <app-scheduler-event-nav></app-scheduler-event-nav>
+    </div>
+    <div class="right-part">
+        <app-scheduler-event-nav></app-scheduler-event-nav>
+
+    </div>
+
 </div>

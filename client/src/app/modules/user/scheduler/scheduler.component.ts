@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCalendar, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { NewEvent } from '@app/shared/models/event/new-event';
+import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
+import { EventService } from '@app/shared/services/event.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -8,23 +9,29 @@ import { NewEvent } from '@app/shared/models/event/new-event';
   styleUrls: ['./scheduler.component.scss']
 })
 export class SchedulerComponent {
-  currentDate: NgbDate;
+  markedDate: NgbDate;
   isCollapsed = true;
-  newEvent = new NewEvent('', '');
+  newEvent = new SchedulerEvent('', '');
+  isSelectedTimeError = false;
 
-  constructor(calendar: NgbCalendar) {
-    this.currentDate = calendar.getToday();
+  constructor(calendar: NgbCalendar, private eventService: EventService) {
+    this.markedDate = calendar.getToday();
   }
 
   addNewEvent() {
-    debugger;
+    debugger
+    const selectedDateTime = new Date(this.markedDate.year, this.markedDate.month-1, this.markedDate.day, Number(this.newEvent.date['hour']), Number(this.newEvent.date['minute']))
 
+    if (selectedDateTime <= new Date()) {
+      this.isSelectedTimeError = true;
+      return;
+    }
+    this.isSelectedTimeError = false;
+    this.eventService.addEvent(this.newEvent);
   }
 
   collapsed() {
-    if (!this.isCollapsed) {
-      this.newEvent.time = { hour: new Date().getHours(), minute: new Date().getMinutes() };
-    }
+    this.newEvent.date = { hour: new Date().getHours(), minute: new Date().getMinutes() };
     this.isCollapsed = !this.isCollapsed;
   }
 }

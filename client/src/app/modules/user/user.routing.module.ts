@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from '@angular/core';
-import { UserLayoutComponent } from '@app/shared/layouts/user-layout/user-layout.component';
+import { UserLayoutComponent } from '@app/shared/components/layouts/user-layout/user-layout.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { MedicineComponent } from './medicine/medicine.component';
 

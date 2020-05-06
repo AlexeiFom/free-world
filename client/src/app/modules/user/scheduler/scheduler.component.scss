@@ -1,24 +1,48 @@
 .content-wrap {
     display: flex;
-    justify-content: space-evenly;
-    .create-event-wrap {
-        width: 74%;
-        .collapseForm {
-            color: black;
-
-            .card-body {
-                display: flex;
-                align-items: center;
-
-                .create-event-text {
-                    margin-left: 20px;
-                    height: calc(1.5em + 0.5rem + 9px) !important;
-                }
-
-                .create-event-button {
-                    margin-left: 20px;
+    .left-part{
+        width: 50%;
+        text-align: center;
+        padding: 0 20px;
+        .create-event-wrap {
+            p {
+                margin-top: 16px;
+            }
+            .collapseForm {
+                color: black;
+                .card {
+                    margin: 0 auto;
+                    .card-body {
+                        display: flex;
+                        align-items: center;
+    
+                        .selected-time-error-wrap {
+                            position: relative;
+                            .selected-time-error {
+                                position: absolute;
+                                color: red;
+                                top: -12px;
+                                left: 50%;
+                                transform: translate(-50%);
+                                white-space: nowrap;
+                            }
+                        }
+    
+                        .create-event-text {
+                            margin-left: 20px;
+                            height: calc(1.5em + 0.5rem + 9px) !important;
+                        }
+    
+                        .create-event-button {
+                            margin-left: 20px;
+                        }
+                    }
                 }
             }
         }
+    
+    }
+    .right-part{
+        width: 50%;
     }
 }

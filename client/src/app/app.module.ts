@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { UserModule } from './modules/user/user.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { IndexLayoutComponent } from './shared/layouts/index-layout/index-layout.component';
-import { UserModule } from './modules/user/user.module';
+import { IndexLayoutComponent } from './shared/components/layouts/index-layout/index-layout.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserModule } from './modules/user/user.module';
     AppRoutingModule,
     UserModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
