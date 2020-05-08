@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
-import { EventService } from '@app/shared/services/event.service';
-
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
 
 @Component({
   selector: 'app-scheduler-event-nav',
@@ -13,18 +8,7 @@ import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-eve
 })
 export class SchedulerEventNavComponent implements OnInit {
   active: 1;
-  events: SchedulerEvent[];
-
-  // constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    // this.eventService.getEvents().subscribe(result => {
-    //   this.events = result
-    // },
-    //   (error) => {
-    //     debugger
-    //   }
-    // );
   }
-
 }

@@ -1,26 +1,33 @@
-<table class="table table-striped">
+<div *ngIf="events else loading">
+  <table class="table table-striped">
     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
-      <th scope="col" sortable="description" (sort)="onSort($event)">Description</th>
-      <th scope="col" >Actions</th>
-    </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+        <th scope="col" sortable="description" (sort)="onSort($event)">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let event of events; index as i">
-      <th scope="row">{{ i }}</th>
-      <td>
-        {{ event.date | date:'MMMM d, y, h:mm:ss a' }}
-      </td>
-      <td>
-        {{ event.text }}
-      </td>
-      <td>
-        <button>Unactive</button>
-        <button>Delete</button>
+      <tr *ngFor="let event of events; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ event.date | date:'MMMM d, y, h:mm:ss a' }}
+        </td>
+        <td>
+          {{ event.text }}
+        </td>
+        <td>
+          <button >Deactive</button>
+          <button (click)="delete(event._id)">Delete</button>
 
-      </td>
-    </tr>
+        </td>
+      </tr>
     </tbody>
   </table>
+
+</div>
+
+<ng-template #loading>
+  <div class="event-loading">Loading...</div>
+</ng-template>

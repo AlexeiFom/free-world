@@ -1,4 +1,5 @@
 .content-wrap {
+    height: 100%;
     display: flex;
     .left-part{
         width: 50%;
@@ -44,5 +45,6 @@
     }
     .right-part{
         width: 50%;
+        overflow: scroll;
     }
 }

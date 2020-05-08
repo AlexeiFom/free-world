@@ -20,8 +20,8 @@ export interface SortEvent {
     '(click)': 'rotate()'
   }
 })
-export class NgbdSortableHeader {
 
+export class NgbdSortableHeader {
   @Input() sortable: SortColumn = '';
   @Input() direction: SortDirection = '';
   @Output() sort = new EventEmitter<SortEvent>();
@@ -32,42 +32,55 @@ export class NgbdSortableHeader {
   }
 }
 
-
 @Component({
   selector: 'app-scheduler-event-table',
   templateUrl: './scheduler-event-table.component.html',
   styleUrls: ['./scheduler-event-table.component.scss']
 })
+
 export class SchedulerEventTableComponent implements OnInit {
-  //countries = COUNTRIES;
-  events: SchedulerEvent[]
+  events: SchedulerEvent[];
 
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe(result => {
-      debugger
-      this.events = result
+    this.eventService.getEvents().subscribe(response => {
+      this.events = response;
     },
-      (error) => {
-        debugger
+      error => {
+        console.log(error);
       }
     );
 
+    this.eventService.addEventUpdate$().subscribe(response => {
+      this.events.push(response);
+    });
+
+    this.eventService.deleteEvent$().subscribe(response => {
+      let index = this.events.indexOf(this.events.find(x => x._id === response), 0);
+      this.events.splice(index, 1);
+    })
   }
 
+  delete(id: string) {
+    this.eventService.delete(id).subscribe(response => {
+      console.log('Deleted success.');
+    },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   onSort({ column, direction }: SortEvent) {
-    // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {
         header.direction = '';
       }
     });
 
-    // sorting countries
     if (direction === '' || column === '') {
       this.events = this.events;
     } else {
@@ -77,7 +90,6 @@ export class SchedulerEventTableComponent implements OnInit {
       });
     }
   }
-
 }
 
 

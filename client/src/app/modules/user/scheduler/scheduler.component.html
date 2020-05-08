@@ -13,10 +13,10 @@
                     <div class="card-body">
                         <div class="selected-time-error-wrap">
                             <span *ngIf="isSelectedTimeError" class="selected-time-error">Expired time !</span>
-                            <ngb-timepicker [(ngModel)]="newEvent.date"></ngb-timepicker>
+                            <ngb-timepicker [(ngModel)]="markedTime"></ngb-timepicker>
                         </div>
 
-                        <input [(ngModel)]="newEvent.text" class="create-event-text form-control form-control-sm"
+                        <input [(ngModel)]="eventText" class="create-event-text form-control form-control-sm"
                             type="text" placeholder="Event...">
                         <button (click)="addNewEvent()" type="button"
                             class="create-event-button btn btn-primary">Add</button>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbCalendar, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
+import { AddSchedulerEvent } from '@app/shared/models/scheduler-event/add-scheduler-event';
 import { EventService } from '@app/shared/services/event.service';
 
 @Component({
@@ -10,29 +10,45 @@ import { EventService } from '@app/shared/services/event.service';
 })
 export class SchedulerComponent {
   markedDate: NgbDate;
+  markedTime: Object;
+  eventText: string;
   isCollapsed = true;
-  newEvent = new SchedulerEvent('', '');
+
+  newEvent: AddSchedulerEvent;
   isSelectedTimeError = false;
 
   constructor(calendar: NgbCalendar, private eventService: EventService) {
     this.markedDate = calendar.getToday();
+    this.markedTime = this.setCurrentTime();
   }
 
   addNewEvent() {
-    const selectedDateTime = new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day, Number(this.newEvent.date['hour']), Number(this.newEvent.date['minute']))
+    const selectedFullTime = new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day, this.markedTime['hour'], this.markedTime['minute']);
 
-    if (selectedDateTime <= new Date()) {
+    if (selectedFullTime <= new Date()) {
       this.isSelectedTimeError = true;
       return;
     }
-    this.newEvent.date = selectedDateTime;
+
+    this.newEvent = new AddSchedulerEvent(selectedFullTime, this.eventText)
+
     this.isSelectedTimeError = false;
-    
-    this.eventService.addEvent(this.newEvent);
+
+    this.eventService.addEvent(this.newEvent).subscribe(response => {
+    },
+      error => {
+        console.log(error)
+      })
   }
 
   collapsed() {
-    this.newEvent.date = { hour: new Date().getHours(), minute: new Date().getMinutes() };
+    if (this.isCollapsed) {
+      this.markedTime = this.setCurrentTime();
+    }
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  setCurrentTime() {
+    return { hour: new Date().getHours(), minute: new Date().getMinutes() };
   }
 }

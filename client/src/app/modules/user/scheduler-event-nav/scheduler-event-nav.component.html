@@ -1,4 +1,3 @@
-
 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>Selected day</a>
@@ -8,7 +7,7 @@
   </li>
   <li [ngbNavItem]="2">
     <a ngbNavLink>All</a>
-    <ng-template ngbNavContent>    
+    <ng-template ngbNavContent>
       <app-scheduler-event-table></app-scheduler-event-table>
     </ng-template>
   </li>
@@ -16,5 +15,3 @@
 
 <div [ngbNavOutlet]="nav" class="exists-events-content mt-2">
 </div>
-
-      
