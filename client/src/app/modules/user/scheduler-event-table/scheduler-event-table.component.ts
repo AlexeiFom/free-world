@@ -1,6 +1,7 @@
 import { Component, OnInit, Directive, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
 import { EventService } from '@app/shared/services/event.service';
+import { map } from 'rxjs/operators';
 
 export type SortColumn = keyof SchedulerEvent | '';
 export type SortDirection = 'asc' | 'desc' | '';
@@ -41,25 +42,12 @@ export class NgbdSortableHeader {
 export class SchedulerEventTableComponent implements OnInit {
   events: SchedulerEvent[];
 
+  @Input() eventsList: SchedulerEvent[];
+
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe(response => {
-      this.events = response;
-    },
-      error => {
-        console.log(error);
-      }
-    );
-
-    this.eventService.addEventUpdate$().subscribe(response => {
-      this.events.push(response);
-    });
-
-    this.eventService.deleteEvent$().subscribe(response => {
-      let index = this.events.indexOf(this.events.find(x => x._id === response), 0);
-      this.events.splice(index, 1);
-    })
+      this.events = this.eventsList;
   }
 
   delete(id: string) {

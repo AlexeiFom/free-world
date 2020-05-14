@@ -1,6 +1,6 @@
 <div class="content-wrap">
     <div class="left-part">
-        <ngb-datepicker [startDate]="markedDate" [(ngModel)]="markedDate" #d></ngb-datepicker>
+        <ngb-datepicker [startDate]="markedDate" [(ngModel)]="markedDate" (dateSelect)="dateSelect()" #d></ngb-datepicker>
         <div class="create-event-wrap">
             <p>
                 <button type="button" class="btn btn-outline-primary" (click)="collapsed()"

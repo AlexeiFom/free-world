@@ -29,12 +29,12 @@ export class SchedulerComponent {
       this.isSelectedTimeError = true;
       return;
     }
-
     this.newEvent = new AddSchedulerEvent(selectedFullTime, this.eventText)
-
     this.isSelectedTimeError = false;
 
     this.eventService.addEvent(this.newEvent).subscribe(response => {
+      debugger
+      this.eventText = '';
     },
       error => {
         console.log(error)
@@ -50,5 +50,9 @@ export class SchedulerComponent {
 
   setCurrentTime() {
     return { hour: new Date().getHours(), minute: new Date().getMinutes() };
+  }
+
+  dateSelect() {
+    this.eventService.dateSelect(new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day));
   }
 }

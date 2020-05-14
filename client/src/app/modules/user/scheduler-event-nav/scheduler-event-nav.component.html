@@ -3,12 +3,15 @@
     <a ngbNavLink>Selected day</a>
     <ng-template ngbNavContent>
       <p>Selected</p>
+      <app-scheduler-event-table [eventsList]="forPerDayEvents"></app-scheduler-event-table>
+
     </ng-template>
   </li>
   <li [ngbNavItem]="2">
     <a ngbNavLink>All</a>
     <ng-template ngbNavContent>
-      <app-scheduler-event-table></app-scheduler-event-table>
+      <p>All</p>
+      <app-scheduler-event-table [eventsList]="allEvents"></app-scheduler-event-table>
     </ng-template>
   </li>
 </ul>
