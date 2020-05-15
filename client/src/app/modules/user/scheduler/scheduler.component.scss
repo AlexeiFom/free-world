@@ -1,7 +1,7 @@
 .content-wrap {
     height: 100%;
     display: flex;
-    .left-part{
+    .left-part {
         width: 50%;
         text-align: center;
         padding: 0 20px;
@@ -16,8 +16,9 @@
                     .card-body {
                         display: flex;
                         align-items: center;
-    
-                        .selected-time-error-wrap {
+                        justify-content: space-around;
+
+                        .selected-time-wrap {
                             position: relative;
                             .selected-time-error {
                                 position: absolute;
@@ -27,23 +28,36 @@
                                 transform: translate(-50%);
                                 white-space: nowrap;
                             }
+
+                            .correct-time {
+                                ::ng-deep .ngb-tp-input {
+                                    color: green;
+                                }
+                            }
+                            .time-error {
+                                ::ng-deep .ngb-tp-input {
+                                    color: red;
+                                }
+                            }
                         }
-    
+
+                        .text-wrap {
+                            flex-grow: 1;
+                            padding: 0 20px;
+                        }
+
                         .create-event-text {
-                            margin-left: 20px;
+                            &.error {
+                                border: 2px solid red;
+                            }
                             height: calc(1.5em + 0.5rem + 9px) !important;
-                        }
-    
-                        .create-event-button {
-                            margin-left: 20px;
                         }
                     }
                 }
             }
         }
-    
     }
-    .right-part{
+    .right-part {
         width: 50%;
         overflow: scroll;
     }

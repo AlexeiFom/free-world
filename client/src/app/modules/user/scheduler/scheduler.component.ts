@@ -12,39 +12,50 @@ export class SchedulerComponent {
   markedDate: NgbDate;
   markedTime: Object;
   eventText: string;
-  isCollapsed = true;
-
   newEvent: AddSchedulerEvent;
-  isSelectedTimeError = false;
+  isSelectedTimeError: Boolean;
+
+  isCollapsed = true;
 
   constructor(calendar: NgbCalendar, private eventService: EventService) {
     this.markedDate = calendar.getToday();
-    this.markedTime = this.setCurrentTime();
   }
 
   addNewEvent() {
-    const selectedFullTime = new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day, this.markedTime['hour'], this.markedTime['minute']);
+    const selectedFullTime = this.getSelectedFullTime();
 
     if (selectedFullTime <= new Date()) {
       this.isSelectedTimeError = true;
       return;
     }
+
     this.newEvent = new AddSchedulerEvent(selectedFullTime, this.eventText)
     this.isSelectedTimeError = false;
 
     this.eventService.addEvent(this.newEvent).subscribe(response => {
-      debugger
-      this.eventText = '';
+      this.eventText = undefined;
     },
       error => {
         console.log(error)
       })
   }
 
-  collapsed() {
-    if (this.isCollapsed) {
-      this.markedTime = this.setCurrentTime();
+  changeTime() {
+    this.eventText;
+
+    if (this.markedTime === null) {
+      return;
     }
+    const selectedFullTime = this.getSelectedFullTime();
+
+    if (selectedFullTime <= new Date()) {
+      this.isSelectedTimeError = true;
+      return;
+    }
+    this.isSelectedTimeError = false;
+  }
+
+  collapsed() {
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -54,5 +65,13 @@ export class SchedulerComponent {
 
   dateSelect() {
     this.eventService.dateSelect(new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day));
+  }
+
+  getSelectedFullTime() {
+    return new Date(this.markedDate.year,
+      this.markedDate.month - 1,
+      this.markedDate.day,
+      this.markedTime !== null ? this.markedTime['hour'] : '00',
+      this.markedTime !== null ? this.markedTime['minute'] : '00');
   }
 }

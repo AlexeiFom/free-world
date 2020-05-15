@@ -1,4 +1,4 @@
-<div *ngIf="events else loading">
+<div *ngIf="events else loading" class="events-table-wrap">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let event of events; index as i" [style.background-color]="event.isActive ? 'green': 'red'">
+        <tr *ngFor="let event of events; index as i" [ngClass]="event.isActive ? 'enabled': 'disabled'">
         <th scope="row">{{ i + 1 }}</th>
         <td>
           {{ event.date | date:'MMMM d, y, h:mm:ss a' }}

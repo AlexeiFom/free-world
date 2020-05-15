@@ -1,6 +1,7 @@
 <div class="content-wrap">
     <div class="left-part">
-        <ngb-datepicker [startDate]="markedDate" [(ngModel)]="markedDate" (dateSelect)="dateSelect()" #d></ngb-datepicker>
+        <ngb-datepicker [startDate]="markedDate" [(ngModel)]="markedDate" (dateSelect)="dateSelect()" #d>
+        </ngb-datepicker>
         <div class="create-event-wrap">
             <p>
                 <button type="button" class="btn btn-outline-primary" (click)="collapsed()"
@@ -11,15 +12,24 @@
             <div class="collapseForm" [ngbCollapse]="isCollapsed">
                 <div class="card">
                     <div class="card-body">
-                        <div class="selected-time-error-wrap">
-                            <span *ngIf="isSelectedTimeError" class="selected-time-error">Expired time !</span>
-                            <ngb-timepicker [(ngModel)]="markedTime"></ngb-timepicker>
+                        <div class="selected-time-wrap">
+                            <span *ngIf="isSelectedTimeError && markedTime" class="selected-time-error">Expired
+                                time!</span>
+                            <ngb-timepicker
+                                [className]="isSelectedTimeError !== undefined ? !isSelectedTimeError ? 'correct-time' : 'time-error' : ''"
+                                [(ngModel)]="markedTime" (ngModelChange)="changeTime()"></ngb-timepicker>
                         </div>
-
-                        <input [(ngModel)]="eventText" class="create-event-text form-control form-control-sm"
-                            type="text" placeholder="Event...">
-                        <button (click)="addNewEvent()" type="button"
-                            class="create-event-button btn btn-primary">Add</button>
+                        <div class="text-wrap">
+                            <input [(ngModel)]="eventText" [style.border]="eventText === '' ? '2px solid red': ''"
+                                class="create-event-text form-control form-control-sm" type="text"
+                                placeholder="Event...">
+                        </div>
+                        <div>
+                            <button
+                                [disabled]="(isSelectedTimeError || isSelectedTimeError === undefined) || (eventText === undefined || eventText === '')"
+                                (click)="addNewEvent()" type="button"
+                                class="create-event-button btn btn-primary">Add</button>
+                        </div>
                     </div>
                 </div>
             </div>
