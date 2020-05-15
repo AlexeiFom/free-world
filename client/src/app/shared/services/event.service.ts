@@ -21,12 +21,27 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   async getEvents(): Promise<SchedulerEvent[]> {
-    return this.http.get<SchedulerEvent[]>(`${environment.apiUrl}/event/events`).toPromise();
+    return await this.http.get<SchedulerEvent[]>(`${environment.apiUrl}/event/events`).toPromise();
+  }
+
+  checkActiveEvents(events: SchedulerEvent[]) {
+    events.forEach((item) => {
+      if (new Date(item.date.toString()) <= new Date()) {
+        item.isActive = false;
+      }
+    })
+    return events;
+  }
+
+  sortByDate(events: SchedulerEvent[]){
+    events.sort((a,b)=>{
+      return <any>new Date(b.date.toString()) - <any>new Date(a.date.toString());
+    })
+    return events;
   }
 
   addEvent(event) {
     return new Observable(subscriber => {
-      debugger
       this.http.post(`${environment.apiUrl}/event/addEvent`, event)
         .subscribe(response => {
           event._id = response['id'];
@@ -53,7 +68,7 @@ export class EventService {
     })
   }
 
-  dateSelect(date){
+  dateSelect(date) {
     this.dateSelectSubject$.next(date);
   }
 
@@ -68,6 +83,5 @@ export class EventService {
   dateSelect$(): Observable<Date> {
     return this.dateSelectSubject$.asObservable();
   }
-
 }
 

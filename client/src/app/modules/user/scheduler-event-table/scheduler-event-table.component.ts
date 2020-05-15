@@ -47,7 +47,8 @@ export class SchedulerEventTableComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-      this.events = this.eventsList;
+    this.eventService.checkActiveEvents(this.eventsList);
+    this.events = this.eventsList;
   }
 
   delete(id: string) {

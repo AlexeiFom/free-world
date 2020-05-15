@@ -3,6 +3,7 @@ import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { EventService } from '@app/shared/services/event.service';
 import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
 import { timeout } from 'rxjs/operators';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-scheduler-event-nav',
@@ -19,25 +20,19 @@ export class SchedulerEventNavComponent implements OnInit {
   async ngOnInit() {
     await this.eventService.getEvents()
       .then(response => {
-
-        // setTimeout(()=>{
           const currentDate = new Date();
-
-          this.allEvents = response;
-  
+          this.eventService.checkActiveEvents(response);
+          this.allEvents = this.eventService.sortByDate(response);
           this.getEventsPerDay(currentDate);
-  
-        // },3000);
-
       },
         error => {
-          debugger
           console.log(error);
         }
       );
 
     this.eventService.addEventUpdate$().subscribe(response => {
       this.allEvents.push(response);
+      this.eventService.sortByDate(this.allEvents);
       this.getEventsPerDay(response.date);
     });
 
