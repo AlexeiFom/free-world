@@ -8,6 +8,7 @@ import { EventService } from '@app/shared/services/event.service';
   templateUrl: './scheduler.component.html',
   styleUrls: ['./scheduler.component.scss']
 })
+
 export class SchedulerComponent {
   markedDate: NgbDate;
   markedTime: Object;

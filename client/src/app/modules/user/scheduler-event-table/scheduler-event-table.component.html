@@ -10,22 +10,21 @@
     </thead>
     <tbody>
         <tr *ngFor="let event of events; index as i" [ngClass]="event.isActive ? 'enabled': 'disabled'">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
+        <th  class="text-center" scope="row">{{ i + 1 }}</th>
+        <td class="text-center">
           {{ event.date | date:'MMMM d, y, h:mm:ss a' }}
         </td>
         <td>
           {{ event.text }}
         </td>
-        <td>
+        <td  class="text-center">
           <button (click)="delete(event._id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
-
 </div>
 
 <ng-template #loading>
-  <div class="event-loading">Loading...</div>
+  <div class="event-loading text-center">Loading...</div>
 </ng-template>
