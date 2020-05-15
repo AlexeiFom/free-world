@@ -64,6 +64,10 @@ export class SchedulerComponent {
   }
 
   dateSelect() {
+    if (!this.isCollapsed && (this.markedTime !== null && this.markedTime !== undefined)) {
+      const selectedFullTime = this.getSelectedFullTime();
+      this.isSelectedTimeError = selectedFullTime <= new Date() ? true : false;
+    }
     this.eventService.dateSelect(new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day));
   }
 
