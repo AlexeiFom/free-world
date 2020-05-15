@@ -10,6 +10,10 @@ const routes: Routes = [
         component: UserLayoutComponent,
         children: [
             {
+                path: '',
+                component: SchedulerComponent
+            },
+            {
                 path: 'scheduler',
                 component: SchedulerComponent
             },
