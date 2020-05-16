@@ -1,6 +1,9 @@
 const express = require('express')
+const passport = require('passport')
+
 const newsRouter = require('./routes/news')
 const eventRouter = require('./routes/event')
+const authRouter = require('./routes/auth')
 
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
@@ -9,10 +12,13 @@ const app = express()
 
 app.use(cors())
 
+require('./middleware/passport')(passport)
+app.use(passport.initialize())
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-
+app.use('/api/auth', authRouter)
 app.use('/api/news', newsRouter)
 app.use('/api/event', eventRouter)
 
