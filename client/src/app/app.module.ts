@@ -8,11 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { IndexLayoutComponent } from './shared/components/layouts/index-layout/index-layout.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { IndexComponent } from './shared/components/index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexLayoutComponent
+    IndexLayoutComponent,
+    LoginComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
