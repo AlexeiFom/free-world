@@ -1,3 +1,5 @@
+<app-loader></app-loader>
+
 <div id="index-modal-container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -11,12 +13,10 @@
             </div>
         </div>
     </nav>
-
     <div class="modal-background">
-
-        <div class="title-anim-wrap">
+        <div class="anim-wrap">
             <div class="title-text-wrap">
-                <span class="title-text">Free WORLD</span>
+                <span class="title-text">{{titleText}}</span>
             </div>
             <div class="opening-door">
                 <span class="opening-door-text">
@@ -27,10 +27,12 @@
                     .............................................................................................................................
                     .............................................................................................................................
                     .............................................................................................................................
-
                 </span>
             </div>
         </div>
+    </div>
 
+    <div>
+        <router-outlet></router-outlet>
     </div>
 </div>

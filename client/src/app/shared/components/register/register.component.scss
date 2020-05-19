@@ -1,9 +1,13 @@
-.login-form-wrap {
-    max-width: 220px;
+.register-form-wrap {
+    max-width: 500px;
     background: white;
     padding: 10px;
     border-radius: 5px;
     margin: 90px auto 0 auto;
+
+    .form-group {
+        text-align: center;
+    }
 
     .form-title {
         position: relative;
@@ -16,21 +20,25 @@
 
     .form-title::before {
         content: "";
-        width: 20px;
+        width: 50px;
         height: 1px;
         background-color: black;
         position: absolute;
-        left: -30px;
+        left: -60px;
         top: 18px;
     }
 
     .form-title::after {
         content: "";
-        width: 20px;
+        width: 50px;
         height: 1px;
         background-color: black;
         position: absolute;
-        right: -30px;
+        right: -60px;
         top: 18px;
+    }
+
+    .form-item {
+        margin-bottom: 1rem;
     }
 }
