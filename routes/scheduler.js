@@ -2,7 +2,7 @@ const express = require('express')
 const passport = require('passport')
 
 const router = express.Router()
-const eventController = require('../controllers/event')
+const eventController = require('../controllers/scheduler')
 
 router.post('/addEvent', eventController.addEvent)
 

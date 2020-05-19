@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
-import { EventService } from '@app/shared/services/event.service';
+import { SchedulerService } from '@app/shared/services/scheduler.service';
 import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
 import { timeout } from 'rxjs/operators';
 import { async } from '@angular/core/testing';
@@ -15,14 +15,14 @@ export class SchedulerEventNavComponent implements OnInit {
   allEvents = new Array<SchedulerEvent>();
   forPerDayEvents = new Array<SchedulerEvent>();
 
-  constructor(private eventService: EventService) { }
+  constructor(private schedulerService: SchedulerService) { }
 
   async ngOnInit() {
-    await this.eventService.getEvents()
+    await this.schedulerService.getEvents()
       .then(response => {
           const currentDate = new Date();
-          this.eventService.checkActiveEvents(response);
-          this.allEvents = this.eventService.sortByDate(response);
+          this.schedulerService.checkActiveEvents(response);
+          this.allEvents = this.schedulerService.sortByDate(response);
           this.getEventsPerDay(currentDate);
       },
         error => {
@@ -30,13 +30,13 @@ export class SchedulerEventNavComponent implements OnInit {
         }
       );
 
-    this.eventService.addEventUpdate$().subscribe(response => {
+    this.schedulerService.addEventUpdate$().subscribe(response => {
       this.allEvents.push(response);
-      this.eventService.sortByDate(this.allEvents);
+      this.schedulerService.sortByDate(this.allEvents);
       this.getEventsPerDay(response.date);
     });
 
-    this.eventService.deleteEvent$().subscribe(response => {
+    this.schedulerService.deleteEvent$().subscribe(response => {
       let fromAllEventsIndex = this.allEvents.indexOf(this.allEvents.find(x => x._id === response), 0);
       this.allEvents.splice(fromAllEventsIndex, 1);
 
@@ -44,7 +44,7 @@ export class SchedulerEventNavComponent implements OnInit {
       this.forPerDayEvents.splice(fromPerDayEventsIndex, 1);
     })
 
-    this.eventService.dateSelect$().subscribe(selectedDate => {
+    this.schedulerService.dateSelect$().subscribe(selectedDate => {
       this.getEventsPerDay(selectedDate);
     })
   }

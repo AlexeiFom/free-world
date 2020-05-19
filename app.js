@@ -2,7 +2,7 @@ const express = require('express')
 const passport = require('passport')
 
 const newsRouter = require('./routes/news')
-const eventRouter = require('./routes/event')
+const schedulerRouter = require('./routes/scheduler')
 const authRouter = require('./routes/auth')
 
 const morgan = require('morgan')
@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 
 app.use('/api/auth', authRouter)
 app.use('/api/news', newsRouter)
-app.use('/api/event', eventRouter)
+app.use('/api/scheduler', schedulerRouter)
 
 app.use(morgan('dev'))
 

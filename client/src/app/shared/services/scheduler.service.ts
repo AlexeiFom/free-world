@@ -1,18 +1,16 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, throwError, of, BehaviorSubject, Subject, interval } from 'rxjs';
-import { map, timeout } from 'rxjs/operators';
+import { Observable, Subject} from 'rxjs';
 
 import { SchedulerEvent } from '../models/scheduler-event/scheduler-event';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class EventService {
+export class SchedulerService {
 
   private addEventSubject$ = new Subject<SchedulerEvent>();
   private deleteEventSubject$ = new Subject<string>();
@@ -21,7 +19,7 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   async getEvents(): Promise<SchedulerEvent[]> {
-    return await this.http.get<SchedulerEvent[]>(`${environment.apiUrl}/event/events`).toPromise();
+    return await this.http.get<SchedulerEvent[]>(`${environment.apiUrl}/scheduler/events`).toPromise();
   }
 
   checkActiveEvents(events: SchedulerEvent[]) {
@@ -42,7 +40,7 @@ export class EventService {
 
   addEvent(event) {
     return new Observable(subscriber => {
-      this.http.post(`${environment.apiUrl}/event/addEvent`, event)
+      this.http.post(`${environment.apiUrl}/scheduler/addEvent`, event)
         .subscribe(response => {
           event._id = response['id'];
           this.addEventSubject$.next(event);
@@ -57,7 +55,7 @@ export class EventService {
 
   delete(id: string) {
     return new Observable(subscriber => {
-      this.http.post(`${environment.apiUrl}/event/delete`, { id: id })
+      this.http.post(`${environment.apiUrl}/scheduler/delete`, { id: id })
         .subscribe(response => {
           this.deleteEventSubject$.next(id);
         },

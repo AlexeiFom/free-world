@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbCalendar, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { AddSchedulerEvent } from '@app/shared/models/scheduler-event/add-scheduler-event';
-import { EventService } from '@app/shared/services/event.service';
+import { SchedulerService } from '@app/shared/services/scheduler.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -18,7 +18,7 @@ export class SchedulerComponent {
 
   isCollapsed = true;
 
-  constructor(calendar: NgbCalendar, private eventService: EventService) {
+  constructor(calendar: NgbCalendar, private schedulerService: SchedulerService) {
     this.markedDate = calendar.getToday();
   }
 
@@ -33,7 +33,7 @@ export class SchedulerComponent {
     this.newEvent = new AddSchedulerEvent(selectedFullTime, this.eventText)
     this.isSelectedTimeError = false;
 
-    this.eventService.addEvent(this.newEvent).subscribe(response => {
+    this.schedulerService.addEvent(this.newEvent).subscribe(response => {
       this.eventText = undefined;
     },
       error => {
@@ -69,7 +69,7 @@ export class SchedulerComponent {
       const selectedFullTime = this.getSelectedFullTime();
       this.isSelectedTimeError = selectedFullTime <= new Date() ? true : false;
     }
-    this.eventService.dateSelect(new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day));
+    this.schedulerService.dateSelect(new Date(this.markedDate.year, this.markedDate.month - 1, this.markedDate.day));
   }
 
   getSelectedFullTime() {

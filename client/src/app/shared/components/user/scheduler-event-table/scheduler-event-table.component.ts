@@ -1,6 +1,6 @@
 import { Component, OnInit, Directive, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { SchedulerEvent } from '@app/shared/models/scheduler-event/scheduler-event';
-import { EventService } from '@app/shared/services/event.service';
+import { SchedulerService } from '@app/shared/services/scheduler.service';
 import { map } from 'rxjs/operators';
 
 export type SortColumn = keyof SchedulerEvent | '';
@@ -44,15 +44,15 @@ export class SchedulerEventTableComponent implements OnInit {
 
   @Input() eventsList: SchedulerEvent[];
 
-  constructor(private eventService: EventService) { }
+  constructor(private schedulerService: SchedulerService) { }
 
   ngOnInit() {
-    this.eventService.checkActiveEvents(this.eventsList);
+    this.schedulerService.checkActiveEvents(this.eventsList);
     this.events = this.eventsList;
   }
 
   delete(id: string) {
-    this.eventService.delete(id).subscribe(response => {
+    this.schedulerService.delete(id).subscribe(response => {
       console.log('Deleted success.');
     },
       error => {
