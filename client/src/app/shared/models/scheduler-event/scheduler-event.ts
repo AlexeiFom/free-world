@@ -1,3 +1,5 @@
+//toDo Add interface
+
 export class SchedulerEvent {
     _id: string;
     date: Object;

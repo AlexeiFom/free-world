@@ -4,6 +4,7 @@ import { Login } from '@app/shared/models/auth/login';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { LoaderService } from '@app/shared/services/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,10 @@ export class LoginComponent {
   model: Login;
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private loaderService: LoaderService) {
+  constructor(
+    private authService: AuthService,
+    private loaderService: LoaderService,
+    private router: Router) {
 
     this.loginForm = new FormGroup({
       email: new FormControl('',
@@ -36,15 +40,27 @@ export class LoginComponent {
   get password() { return this.loginForm.get('password'); }
 
   login() {
-    debugger
     this.loaderService.show();
 
     setTimeout(() => {
       this.loaderService.hide();
-    }, 3000);
+    }, 1000);
 
     this.model = new Login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
 
-  }
+    this.authService.login(this.model)
+      .subscribe(data => {
+        this.router.navigate(['/user'])
+          .then(response => {
+            //toDo Result message for User
 
+            this.loaderService.hide();
+          })
+          .catch(error => {
+            //toDo Result message for User
+            console.error(error)
+          })
+      }
+      )
+  }
 }

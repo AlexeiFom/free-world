@@ -4,6 +4,8 @@ import { Validators } from '@angular/forms';
 import { Register } from '@app/shared/models/auth/register';
 import { ComparePasswords } from '@app/shared/helpers/compare-passwords';
 import { Observable } from 'rxjs';
+import { LoaderService } from '@app/shared/services/loader.service';
+import { AuthService } from '@app/shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,11 @@ export class RegisterComponent {
   registerForm: FormGroup;
   pass: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private loaderService: LoaderService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -51,7 +57,27 @@ export class RegisterComponent {
   get getFormControls() { return this.registerForm.controls; }
 
   register() {
-    debugger
 
+    this.loaderService.show();
+
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 1000);
+
+    const model = new Register(
+      this.registerForm.get(['firstName']).value,
+      this.registerForm.get(['lastName']).value,
+      this.registerForm.get(['email']).value,
+      this.registerForm.controls.passwordFormGroup.get(['password']).value
+    )
+
+    this.authService.register(model)
+      .subscribe(data => {
+        debugger
+
+        this.loaderService.hide();
+      }, error => {
+        debugger;
+      })
   }
 }

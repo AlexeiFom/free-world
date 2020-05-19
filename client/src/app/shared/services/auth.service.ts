@@ -1,12 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '@environment/environment';
+import { Register } from '../models/auth/register';
+import { Login } from '../models/auth/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
+  }
+
+  register(model: Register): Observable<any> {
+    return new Observable(data => {
+
+      this.http.post(`${environment.apiUrl}/auth/register`, model)
+        .subscribe(data => {
+          debugger
+        },
+          error => {
+            console.error(error)
+          }
+        )
+    })
+
+
+  }
+
+  login(model: Login): Observable<any> {
+    return new Observable(subscriber => {
+      this.http.post(`${environment.apiUrl}/auth/login`, model)
+        .subscribe(data => {
+          subscriber.next()
+        },
+          error => {
+            subscriber.error(error)
+          }
+        )
+    })
   }
 }

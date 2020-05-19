@@ -1,3 +1,5 @@
+//toDo Add interface
+
 export class Register {
     constructor(firstName, lastName, email, password) {
         this.firstName = firstName;

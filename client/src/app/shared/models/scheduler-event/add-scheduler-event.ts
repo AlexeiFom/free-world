@@ -1,3 +1,5 @@
+//toDo Add interface
+
 export class AddSchedulerEvent {
     date: Object;
     text: string;
