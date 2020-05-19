@@ -1,18 +1,23 @@
-.events-table-wrap{
-  thead{
-    th{
+.events-table-wrap {
+  thead {
+    th {
       text-align: center;
     }
   }
-tbody{
-  tr{
-    &.enabled{
-      background-color: #a2ffa2;
-    }
-    &.disabled{
-      background-color: #ff8c8c;
+  tbody {
+    tr {
+      &.enabled {
+        background-color: #a2ffa2;
+      }
+      &.disabled {
+        background-color: #ff8c8c;
+      }
     }
   }
+
+.no-events-wrap{
+  background-color: #b7b7b7;
+  text-align: center;
 }
 
   //sort
@@ -21,7 +26,7 @@ tbody{
     user-select: none;
     -webkit-user-select: none;
   }
-  
+
   th[sortable].desc:before,
   th[sortable].asc:before {
     content: "";
@@ -34,15 +39,10 @@ tbody{
     float: left;
     margin-left: -22px;
   }
-  
+
   th[sortable].desc:before {
     transform: rotate(180deg);
     -ms-transform: rotate(180deg);
   }
   // end sort
-
-
-  
 }
-
-

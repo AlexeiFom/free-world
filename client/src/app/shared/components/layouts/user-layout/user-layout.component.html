@@ -7,13 +7,16 @@
         <span class="title">- Dashboard -</span>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" routerLink="">Active</a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="scheduler">Scheduler</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="scheduler">Scheduler</a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="medicine">Medicine</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="medicine">Medicine</a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="weather">Weather</a>
           </li>
         </ul>
       </div>

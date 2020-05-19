@@ -4,25 +4,30 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
-        <th scope="col" >Description</th>
+        <th scope="col">Description</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let event of events; index as i" [ngClass]="event.isActive ? 'enabled': 'disabled'">
-        <th  class="text-center" scope="row">{{ i + 1 }}</th>
+      <tr *ngFor="let event of events; index as i" [ngClass]="event.isActive ? 'enabled': 'disabled'">
+        <th class="text-center" scope="row">{{ i + 1 }}</th>
         <td class="text-center">
           {{ event.date | date:'MMMM d, y, h:mm:ss a' }}
         </td>
         <td>
           {{ event.text }}
         </td>
-        <td  class="text-center">
+        <td class="text-center">
           <button (click)="delete(event._id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <p *ngIf="events.length === 0" class="no-events-wrap">
+    No events ...
+  </p>
+
 </div>
 
 <ng-template #loading>

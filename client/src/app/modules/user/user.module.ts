@@ -13,6 +13,9 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { HeaderComponent } from '@app/shared/components/user/header/header.component';
 import { MedicineComponent } from './medicine/medicine.component';
 import { SchedulerEventTableComponent, NgbdSortableHeader } from '@app/shared/components/user/scheduler-event-table/scheduler-event-table.component';
+import { NewsComponent } from './news/news.component';
+import { WeatherComponent } from './weather/weather.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { SchedulerEventTableComponent, NgbdSortableHeader } from '@app/shared/co
     MedicineComponent,
     SchedulerEventNavComponent,
     SchedulerEventTableComponent,
-    NgbdSortableHeader
+    NgbdSortableHeader,
+    NewsComponent,
+    WeatherComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { UserLayoutComponent } from '@app/shared/components/layouts/user-layout/user-layout.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { MedicineComponent } from './medicine/medicine.component';
+import { NewsComponent } from './news/news.component';
+import { WeatherComponent } from './weather/weather.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {
@@ -11,7 +14,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: SchedulerComponent
+                component: HomeComponent
             },
             {
                 path: 'scheduler',
@@ -20,8 +23,15 @@ const routes: Routes = [
             {
                 path: 'medicine',
                 component: MedicineComponent
+            },
+            {
+                path: 'news',
+                component: NewsComponent
+            },
+            {
+                path: 'weather',
+                component: WeatherComponent
             }
-
         ]
     }
 ]
