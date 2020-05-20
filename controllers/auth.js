@@ -34,14 +34,18 @@ module.exports.login = async function (req, resp) {
             })
         }
         else {
-            resp.status(401).json("Password is wrong")
+            resp.status(401).json({
+                message: "Password is wrong"
+            })
             console.log("Password is wrong")
         }
     }
     else {
         console.log('User is not founded')
 
-        resp.status(404).json('User with this email is not found')
+        resp.status(404).json({
+            message: 'User with this email is not found'
+        })
     }
 }
 

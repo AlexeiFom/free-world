@@ -6,6 +6,8 @@ import { ComparePasswords } from '@app/shared/helpers/compare-passwords';
 import { Observable } from 'rxjs';
 import { LoaderService } from '@app/shared/services/loader.service';
 import { AuthService } from '@app/shared/services/auth.service';
+import { AuthError } from '@app/shared/models/auth/authError';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,12 +18,16 @@ import { AuthService } from '@app/shared/services/auth.service';
 export class RegisterComponent {
   registerForm: FormGroup;
   pass: FormGroup;
+  error: AuthError;
 
   constructor(
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.error = new AuthError(false, '');
+  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -60,10 +66,6 @@ export class RegisterComponent {
 
     this.loaderService.show();
 
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 1000);
-
     const model = new Register(
       this.registerForm.get(['firstName']).value,
       this.registerForm.get(['lastName']).value,
@@ -74,10 +76,19 @@ export class RegisterComponent {
     this.authService.register(model)
       .subscribe(data => {
         debugger
-
+        // toDo message Success
         this.loaderService.hide();
+
+        this.router.navigate(['/login']);
       }, error => {
-        debugger;
+        this.loaderService.hide();
+
+        this.error.message = error.error.message;
+        this.error.isError = true;
       })
+  }
+
+  closeError() {
+    this.error.isError = false;
   }
 }

@@ -16,6 +16,7 @@ import { SchedulerEventTableComponent, NgbdSortableHeader } from '@app/shared/co
 import { NewsComponent } from './news/news.component';
 import { WeatherComponent } from './weather/weather.component';
 import { HomeComponent } from './home/home.component';
+import { GoogleMapComponent } from './google-map/google-map.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeComponent } from './home/home.component';
     NgbdSortableHeader,
     NewsComponent,
     WeatherComponent,
-    HomeComponent
+    HomeComponent,
+    GoogleMapComponent
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { LoaderService } from '@app/shared/services/loader.service';
 import { Router } from '@angular/router';
+import { AuthError } from '@app/shared/models/auth/authError';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,13 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   model: Login;
   loginForm: FormGroup;
+  error: AuthError;
 
   constructor(
     private authService: AuthService,
     private loaderService: LoaderService,
     private router: Router) {
+    this.error = new AuthError(false, '');
 
     this.loginForm = new FormGroup({
       email: new FormControl('',
@@ -36,31 +39,30 @@ export class LoginComponent {
     });
   }
 
+  closeError() {
+    this.error.isError = false;
+  }
+
   get email() { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password'); }
 
   login() {
     this.loaderService.show();
 
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 1000);
-
     this.model = new Login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
 
     this.authService.login(this.model)
       .subscribe(data => {
-        this.router.navigate(['/user'])
-          .then(response => {
-            //toDo Result message for User
+        this.loaderService.hide();
 
-            this.loaderService.hide();
-          })
-          .catch(error => {
-            //toDo Result message for User
-            console.error(error)
-          })
-      }
+        this.router.navigate(['/user']);
+      },
+        error => {
+          this.loaderService.hide();
+
+          this.error.message = error.error.message;
+          this.error.isError = true;
+        }
       )
   }
 }

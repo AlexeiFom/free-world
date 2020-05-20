@@ -66,7 +66,12 @@
       </div>
     </div>
     <div class="form-group">
-      <button [disabled]="registerForm.invalid" class="btn btn-primary">Register</button>
+      <button [disabled]="registerForm.invalid || error.isError" class="btn btn-primary">Register</button>
     </div>
   </form>
+
+  <p *ngIf="error.isError" (ngModel)="error.isError" class="authError-wrap">
+    <ngb-alert type="danger" (close)="closeError()">{{error.message}}</ngb-alert>
+  </p>
+
 </div>

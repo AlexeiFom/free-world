@@ -4,24 +4,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environment/environment';
 import { Register } from '../models/auth/register';
 import { Login } from '../models/auth/login';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   register(model: Register): Observable<any> {
-    return new Observable(data => {
+    return new Observable(subscriber => {
 
       this.http.post(`${environment.apiUrl}/auth/register`, model)
         .subscribe(data => {
-          this.router.navigate(['/login']);
+          subscriber.next();
         },
           error => {
-            console.error(error)
+            subscriber.error(error);
           }
         )
     })
