@@ -1,9 +1,15 @@
 .login-form-wrap {
     max-width: 220px;
-    background: white;
     padding: 10px;
     border-radius: 5px;
     margin: 90px auto 0 auto;
+    border: 1px solid white;
+
+    .form-group {
+        .form-control {
+            background-color: transparent;
+        }
+    }
 
     .form-title {
         position: relative;
@@ -12,13 +18,14 @@
         font-weight: bold;
         font-size: 24px;
         padding-bottom: 15px;
+        color: white;
     }
 
     .form-title::before {
         content: "";
         width: 20px;
         height: 1px;
-        background-color: black;
+        background-color: white;
         position: absolute;
         left: -30px;
         top: 18px;
@@ -28,13 +35,13 @@
         content: "";
         width: 20px;
         height: 1px;
-        background-color: black;
+        background-color: white;
         position: absolute;
         right: -30px;
         top: 18px;
     }
 
-    .authError-wrap{
+    .authError-wrap {
         margin-top: 1rem;
     }
 }

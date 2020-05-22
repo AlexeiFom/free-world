@@ -1,44 +1,56 @@
 .register-form-wrap {
     max-width: 500px;
-    background: white;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
     margin: 90px auto 0 auto;
+    border: 1px solid white;
+    
+    form {
+        color: white;
 
-    .form-group {
-        text-align: center;
-    }
+        .form-group {
+            text-align: center;
 
-    .form-title {
-        position: relative;
-        font-family: initial;
-        letter-spacing: 2px;
-        font-weight: bold;
-        font-size: 24px;
-        padding-bottom: 15px;
-    }
+            .form-control {
+                background-color: transparent;
+            }
+        }
 
-    .form-title::before {
-        content: "";
-        width: 50px;
-        height: 1px;
-        background-color: black;
-        position: absolute;
-        left: -60px;
-        top: 18px;
-    }
+        .form-title {
+            position: relative;
+            font-family: initial;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 24px;
+            padding-bottom: 15px;
+        }
 
-    .form-title::after {
-        content: "";
-        width: 50px;
-        height: 1px;
-        background-color: black;
-        position: absolute;
-        right: -60px;
-        top: 18px;
-    }
+        .form-title::before {
+            content: "";
+            width: 50px;
+            height: 1px;
+            background-color: black;
+            position: absolute;
+            left: -60px;
+            top: 18px;
+        }
 
-    .form-item {
-        margin-bottom: 1rem;
+        .form-title::after {
+            content: "";
+            width: 50px;
+            height: 1px;
+            background-color: black;
+            position: absolute;
+            right: -60px;
+            top: 18px;
+        }
+
+        .form-item {
+            margin-bottom: 1rem;
+        }
     }
+}
+
+.form-control:focus{
+    border-color: #36b411;
 }

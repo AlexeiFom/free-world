@@ -11,6 +11,9 @@ export class IndexComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.titleText = 'Free World';
+    this.titleText = 'Free World'
+    let mainModal = document.querySelector('#index-modal-container') as HTMLElement;
+
+    mainModal.className = "main-content";
   }
 }

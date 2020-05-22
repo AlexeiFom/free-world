@@ -14,6 +14,7 @@ import { IndexComponent } from './shared/components/index/index.component';
 import { RegisterComponent } from './shared/components/register/register.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { InterceptorService } from './shared/services/interceptor.service';
+import { AuthModalComponent } from './shared/components/modals/auth-modal/auth-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { InterceptorService } from './shared/services/interceptor.service';
     IndexComponent,
     RegisterComponent,
     LoaderComponent,
+    AuthModalComponent,
   ],
   imports: [
     BrowserModule,

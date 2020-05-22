@@ -1,6 +1,8 @@
 const Event = require('../models/event/Event')
 
 module.exports.addEvent = async function (req, resp) {
+    console.log('Getting evebts...')
+
     console.log(req.body)
 
     const newEvent = new Event({
@@ -67,21 +69,4 @@ module.exports.delete = async function (req, res) {
             });
         }
     })
-
-    // await Event.findByIdAndRemove(req.body.id, (err, data) => {
-
-    //     console.log(data)
-    //     console.log(err)
-
-    //     if (err) {
-    //         console.log('Deliting Error !')
-
-    //         res.status(400).json((`Element with this 'Id' is not found.`))
-    //     }
-
-    //     console.log('Deleted Success !')
-
-    //     res.status(200).json('Deleted Success !')
-    // });
-
 }

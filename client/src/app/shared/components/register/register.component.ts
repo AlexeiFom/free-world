@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, AbstractControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Register } from '@app/shared/models/auth/register';
 import { ComparePasswords } from '@app/shared/helpers/compare-passwords';
-import { Observable } from 'rxjs';
 import { LoaderService } from '@app/shared/services/loader.service';
 import { AuthService } from '@app/shared/services/auth.service';
-import { AuthError } from '@app/shared/models/auth/authError';
+import { AuthMessage } from '@app/shared/models/auth/authMessage';
 import { Router } from '@angular/router';
+// import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -18,16 +18,29 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerForm: FormGroup;
   pass: FormGroup;
-  error: AuthError;
+  message: AuthMessage;
 
   constructor(
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    // config: NgbModalConfig,
+    // private modalService: NgbModal
   ) {
-    this.error = new AuthError(false, '');
+    this.message = new AuthMessage(false, '');
+    // config.backdrop = 'static';
+    // config.keyboard = false;
+    // config.centered = true;
   }
+
+//   open(content) {
+//     this.error.isError = false;
+//     this.error.message = 'User was created successfylly';
+// // this.error.class.background=''
+
+//     const ref = this.modalService.open(content);
+//   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -77,18 +90,18 @@ export class RegisterComponent {
       .subscribe(data => {
         debugger
         // toDo message Success
-        this.loaderService.hide();
+        // this.loaderService.hide();
 
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
       }, error => {
-        this.loaderService.hide();
+        // this.loaderService.hide();
 
-        this.error.message = error.error.message;
-        this.error.isError = true;
+        // this.error.message = error.error.message;
+        // this.error.isError = true;
       })
   }
 
   closeError() {
-    this.error.isError = false;
+    this.message.isError = false;
   }
 }

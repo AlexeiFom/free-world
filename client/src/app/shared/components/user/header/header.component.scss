@@ -9,7 +9,11 @@
         .navbar-nav {
             .nav-item {
                 .nav-link {
+                    cursor: pointer;
                     color: white;
+                    &.user-info {
+                        cursor: default;
+                    }
                 }
             }
         }

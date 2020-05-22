@@ -18,7 +18,7 @@ module.exports.login = async function (req, resp) {
         if (enteredPasswordBcrypt) {
             console.log("Password is currect")
 
-            const token = jwt.sign({
+            userResult.token = 'Bearer ' + jwt.sign({
                 email: userResult.email,
                 userId: userResult._id
             },
@@ -27,10 +27,10 @@ module.exports.login = async function (req, resp) {
                     expiresIn: 60 * 60
                 }
             )
-            console.log(token)
+            console.log(userResult)
 
             resp.status(200).json({
-                token: `Bearer ${token}`
+                userInfo: userResult
             })
         }
         else {

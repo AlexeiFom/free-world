@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { LoaderService } from '@app/shared/services/loader.service';
 import { Router } from '@angular/router';
-import { AuthError } from '@app/shared/models/auth/authError';
+import { AuthMessage } from '@app/shared/models/auth/authMessage';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +15,13 @@ import { AuthError } from '@app/shared/models/auth/authError';
 export class LoginComponent {
   model: Login;
   loginForm: FormGroup;
-  error: AuthError;
+  message: AuthMessage;
 
   constructor(
     private authService: AuthService,
     private loaderService: LoaderService,
     private router: Router) {
-    this.error = new AuthError(false, '');
+    this.message = new AuthMessage(false, '');
 
     this.loginForm = new FormGroup({
       email: new FormControl('',
@@ -40,7 +40,7 @@ export class LoginComponent {
   }
 
   closeError() {
-    this.error.isError = false;
+    this.message.isError = false;
   }
 
   get email() { return this.loginForm.get('email'); }
@@ -60,8 +60,8 @@ export class LoginComponent {
         error => {
           this.loaderService.hide();
 
-          this.error.message = error.error.message;
-          this.error.isError = true;
+          this.message.text = error.error.message;
+          this.message.isError = true;
         }
       )
   }

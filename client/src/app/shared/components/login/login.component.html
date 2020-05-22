@@ -24,11 +24,11 @@
         Error Password max length {{password?.errors?.maxlength.requiredLength}} characters !
       </div>
     </div>
-    <button [disabled]="!loginForm.valid || error.isError" type="button" (click)="login()" class="btn btn-primary">Submit</button>
+    <button [disabled]="!loginForm.valid || message.isError" type="button" (click)="login()" class="btn btn-primary">Submit</button>
   </form>
 
-  <p *ngIf="error.isError" (ngModel)="error.isError" class="authError-wrap">
-    <ngb-alert type="danger" (close)="closeError()">{{error.message}}</ngb-alert>
+  <p *ngIf="message.isError" (ngModel)="message.isError" class="authError-wrap">
+    <ngb-alert type="danger" (close)="closeError()">{{message.text}}</ngb-alert>
   </p>
   
 </div>

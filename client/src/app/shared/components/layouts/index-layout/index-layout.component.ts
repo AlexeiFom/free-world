@@ -14,10 +14,5 @@ export class IndexLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.titleText = 'Free World'
-    let mainModal = document.querySelector('#index-modal-container') as HTMLElement;
-
-    mainModal.className = "main-content";
   }
 }
