@@ -6,6 +6,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { UserModule } from './modules/user/user.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MaterialModule } from './modules/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { IndexLayoutComponent } from './shared/components/layouts/index-layout/index-layout.component';
@@ -35,6 +37,8 @@ import { AuthModalComponent } from './shared/components/modals/auth-modal/auth-m
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     InterceptorService,
@@ -44,6 +48,7 @@ import { AuthModalComponent } from './shared/components/modals/auth-modal/auth-m
       multi: true
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -73,13 +73,13 @@ module.exports.register = async function (req, resp) {
             await user.save()
 
             resp.status(201).json({
-                message: 'User Is created'
+                message: 'User was created successfully'
             })
 
-            console.log('User Is created')
+            console.log('User was created successfully')
         }
         catch (err) {
-            console.log('Error creating')
+            console.log('Error : Creating error')
             errorHandler(resp, err)
         }
     }

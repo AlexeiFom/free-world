@@ -1,0 +1,29 @@
+::ng-deep .cdk-overlay-container {
+    .cdk-global-overlay-wrapper {
+        .cdk-overlay-pane {
+            &.success {
+                .mat-dialog-container {
+                    background: #97c197;
+                    border: 2px solid green;
+                }
+            }
+            &.error {
+                .mat-dialog-container {
+                    border: 2px solid red;
+                    background: #ffbebe;
+                }
+            }
+
+            .mat-dialog-container {
+                .mat-dialog-title {
+                    color: black;
+                }
+
+                .mat-dialog-actions {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

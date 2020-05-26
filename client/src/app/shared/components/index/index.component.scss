@@ -1,8 +1,6 @@
 #index-modal-container {
   display: flex !important ;
   flex-direction: column;
-  //background: url("../../../../assets/images/background-img.jpg");
-  // background: url("../../../../assets/images/space2.jpg");
   position: fixed;
   display: table;
   height: 100%;
@@ -14,7 +12,6 @@
   &.main-content {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    animation-delay: 1.5s;
   }
 
   .modal-background {
@@ -34,7 +31,7 @@
         position: absolute;
 
         .title-text {
-          font-size: 80px;
+          font-size: 70px;
           color: white;
           font-family: cursive;
           letter-spacing: 10px;
@@ -50,14 +47,8 @@
         border-radius: 10px;
         transform-origin: bottom;
         animation: show-main-title 1s forwards;
-        animation-delay: 3s;
+        animation-delay: 1s;
         animation-timing-function: cubic-bezier(1, 0.01, 1, 1);
-
-        overflow: hidden;
-
-        .opening-door-text {
-          color: white;
-        }
       }
 
       @keyframes show-main-title {

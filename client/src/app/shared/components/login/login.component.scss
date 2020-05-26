@@ -1,47 +1,53 @@
-.login-form-wrap {
-    max-width: 220px;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 90px auto 0 auto;
-    border: 1px solid white;
+app-login:host {
+    flex-grow: 1 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .form-group {
-        .form-control {
-            background-color: transparent;
+    .login-form-wrap {
+        max-width: 220px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid white;
+
+        .form-group {
+            .form-control {
+                background-color: transparent;
+            }
         }
-    }
 
-    .form-title {
-        position: relative;
-        font-family: initial;
-        letter-spacing: 2px;
-        font-weight: bold;
-        font-size: 24px;
-        padding-bottom: 15px;
-        color: white;
-    }
+        .form-title {
+            position: relative;
+            font-family: initial;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 24px;
+            padding-bottom: 15px;
+            color: white;
+        }
 
-    .form-title::before {
-        content: "";
-        width: 20px;
-        height: 1px;
-        background-color: white;
-        position: absolute;
-        left: -30px;
-        top: 18px;
-    }
+        .form-title::before {
+            content: "";
+            width: 20px;
+            height: 1px;
+            background-color: white;
+            position: absolute;
+            left: -30px;
+            top: 18px;
+        }
 
-    .form-title::after {
-        content: "";
-        width: 20px;
-        height: 1px;
-        background-color: white;
-        position: absolute;
-        right: -30px;
-        top: 18px;
-    }
+        .form-title::after {
+            content: "";
+            width: 20px;
+            height: 1px;
+            background-color: white;
+            position: absolute;
+            right: -30px;
+            top: 18px;
+        }
 
-    .authError-wrap {
-        margin-top: 1rem;
+        .authError-wrap {
+            margin-top: 1rem;
+        }
     }
 }

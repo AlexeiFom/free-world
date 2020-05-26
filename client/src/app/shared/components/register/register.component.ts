@@ -7,7 +7,8 @@ import { LoaderService } from '@app/shared/services/loader.service';
 import { AuthService } from '@app/shared/services/auth.service';
 import { AuthMessage } from '@app/shared/models/auth/authMessage';
 import { Router } from '@angular/router';
-// import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthModalComponent } from '../modals/auth-modal/auth-modal.component';
 
 @Component({
   selector: 'app-register',
@@ -17,30 +18,14 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent {
   registerForm: FormGroup;
-  pass: FormGroup;
-  message: AuthMessage;
 
   constructor(
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     private authService: AuthService,
     private router: Router,
-    // config: NgbModalConfig,
-    // private modalService: NgbModal
-  ) {
-    this.message = new AuthMessage(false, '');
-    // config.backdrop = 'static';
-    // config.keyboard = false;
-    // config.centered = true;
-  }
-
-//   open(content) {
-//     this.error.isError = false;
-//     this.error.message = 'User was created successfylly';
-// // this.error.class.background=''
-
-//     const ref = this.modalService.open(content);
-//   }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -76,7 +61,6 @@ export class RegisterComponent {
   get getFormControls() { return this.registerForm.controls; }
 
   register() {
-
     this.loaderService.show();
 
     const model = new Register(
@@ -87,21 +71,27 @@ export class RegisterComponent {
     )
 
     this.authService.register(model)
-      .subscribe(data => {
-        debugger
-        // toDo message Success
-        // this.loaderService.hide();
+      .subscribe(response => {
+        this.loaderService.hide();
 
-        // this.router.navigate(['/login']);
-      }, error => {
-        // this.loaderService.hide();
+        const rusultModal = this.dialog.open(AuthModalComponent,
+          {
+            data: { title: response, text: 'Please Log In via your creeds.' },
+            panelClass: 'success'
+          });
 
-        // this.error.message = error.error.message;
-        // this.error.isError = true;
-      })
-  }
+        rusultModal.afterClosed().subscribe(() => {
+          this.router.navigate(['/login']);
+        });
+      },
+        error => {
+          this.loaderService.hide();
 
-  closeError() {
-    this.message.isError = false;
+          this.dialog.open(AuthModalComponent,
+            {
+              data: { title: error },
+              panelClass: 'error',
+            });
+        })
   }
 }
