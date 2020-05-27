@@ -10,9 +10,6 @@ import { AuthMessage } from '../models/auth/authMessage';
   providedIn: 'root'
 })
 export class AuthService {
-  authModalSubject$ = new Subject<AuthMessage>();
-  message: AuthMessage;
-
   constructor(private http: HttpClient) { }
 
   register(model: Register): Observable<any> {
@@ -42,7 +39,8 @@ export class AuthService {
     })
   }
 
-  showModal$(): Observable<AuthMessage> {
-    return this.authModalSubject$.asObservable();
+  isAuthenticated(): boolean {
+    const token = JSON.parse(localStorage.getItem('userInfo'))?.['token'];
+    return token ? true : false;
   }
 }

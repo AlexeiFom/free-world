@@ -7,11 +7,13 @@ import { NewsComponent } from './news/news.component';
 import { WeatherComponent } from './weather/weather.component';
 import { HomeComponent } from './home/home.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
+import { AuthGuardService } from '@app/shared/classes/auth-guard.service';
 
 const routes: Routes = [
     {
         path: 'user',
         component: UserLayoutComponent,
+        canActivate:[AuthGuardService],
         children: [
             {
                 path: '',
