@@ -7,9 +7,16 @@
   
   .navbar {
     z-index: 2;
-  }
 
-  #navbarSupportedContent {
-    justify-content: flex-end;
+    .navbar-brand{
+      svg{
+        fill:white;
+        width: 50px;
+      }
+    }
+
+    #navbarSupportedContent {
+      justify-content: flex-end;
+    }
   }
 }
