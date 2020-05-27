@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
 import { Register } from '../models/auth/register';
 import { Login } from '../models/auth/login';
-import { AuthMessage } from '../models/auth/authMessage';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class AuthService {
 
   register(model: Register): Observable<any> {
     return new Observable(subscriber => {
-      this.http.post(`${environment.apiUrl}/auth/register`, model)
+      this.http.post(`${environment.url}/auth/register`, model)
         .subscribe(data => {
           subscriber.next(data['message']);
         },
@@ -27,7 +26,7 @@ export class AuthService {
 
   login(model: Login): Observable<any> {
     return new Observable(subscriber => {
-      this.http.post(`${environment.apiUrl}/auth/login`, model)
+      this.http.post(`${environment.url}/auth/login`, model)
         .subscribe(data => {
           localStorage.setItem('userInfo', JSON.stringify(data['userInfo']))
           subscriber.next()

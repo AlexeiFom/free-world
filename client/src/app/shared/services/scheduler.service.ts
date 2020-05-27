@@ -19,7 +19,7 @@ export class SchedulerService {
   constructor(private http: HttpClient) { }
 
   async getEvents(): Promise<SchedulerEvent[]> {
-    return await this.http.get<SchedulerEvent[]>(`${environment.apiUrl}/scheduler/events`).toPromise();
+    return await this.http.get<SchedulerEvent[]>(`${environment.url}/scheduler/events`).toPromise();
   }
 
   checkActiveEvents(events: SchedulerEvent[]) {
@@ -40,7 +40,7 @@ export class SchedulerService {
 
   addEvent(event) {
     return new Observable(subscriber => {
-      this.http.post(`${environment.apiUrl}/scheduler/addEvent`, event)
+      this.http.post(`${environment.url}/scheduler/addEvent`, event)
         .subscribe(response => {
           event._id = response['id'];
           this.addEventSubject$.next(event);
@@ -55,7 +55,7 @@ export class SchedulerService {
 
   delete(id: string) {
     return new Observable(subscriber => {
-      this.http.post(`${environment.apiUrl}/scheduler/delete`, { id: id })
+      this.http.post(`${environment.url}/scheduler/delete`, { id: id })
         .subscribe(response => {
           this.deleteEventSubject$.next(id);
         },
