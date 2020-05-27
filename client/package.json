@@ -28,6 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "bootstrap": "^4.4.1",
+    "firebase": "^7.14.5",
     "jquery": "^3.5.0",
     "ng-bootstrap-form-validation": "^5.0.0",
     "rxjs": "~6.5.4",

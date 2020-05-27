@@ -39,6 +39,9 @@ export class LoginComponent {
     });
   }
 
+
+
+//toDo check this method
   closeError() {
     this.message.isError = false;
   }
