@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { AppComponent } from './app.component';
 import { IndexLayoutComponent } from './shared/components/layouts/index-layout/index-layout.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -17,6 +18,11 @@ import { RegisterComponent } from './shared/components/register/register.compone
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { InterceptorService } from './shared/services/interceptor.service';
 import { AuthModalComponent } from './shared/components/modals/auth-modal/auth-modal.component';
+
+import { environment } from '@environment/environment';
+import * as firebase from "firebase/app";
+
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [

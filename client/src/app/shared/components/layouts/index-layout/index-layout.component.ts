@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app/shared/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+// import { GoogleAuthService } from '@app/shared/services/google-auth.service';
 
 @Component({
   selector: 'app-index-layout',
@@ -10,9 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 export class IndexLayoutComponent implements OnInit {
   titleText: string;
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) {
+  constructor(
+    // private googleAuthService: GoogleAuthService,
+  ) {
   }
 
   ngOnInit() {
   }
+
+  googleLogin() {
+    // this.googleAuthService.login();
+  }
+
 }
